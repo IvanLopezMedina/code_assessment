@@ -5,7 +5,8 @@ const fetchDataFromProvider = async (url) => {
   await axios
     .get(url)
     .then((response) => {
-      data = response.data;
+      // Take the first object which contains all the data
+      data = response.data[Object.keys(response.data)[0]];
     })
     .catch((error) => {
       throw new Error(error);
