@@ -15,4 +15,9 @@ const fetchDataFromProvider = async (url) => {
   return data;
 };
 
-module.exports = {fetchDataFromProvider};
+const filterNameFromList = (list, name) =>
+  list.filter((item) => item.name === name);
+
+const filterIdFromList = (list, id) => list.filter((item) => item.id === id);
+
+module.exports = {fetchDataFromProvider, filterNameFromList, filterIdFromList};
