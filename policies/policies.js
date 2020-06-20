@@ -12,7 +12,6 @@ const getPoliciesByUsername = async (req, res) => {
 
   const client = await filterNameFromList(clientList, req.params.name);
   data = data.filter((policy) => policy.clientId === client[0].id);
-
   return res.json(data);
 };
 
