@@ -41,7 +41,6 @@ describe('Policies Unit Test', () => {
         .get('/policies/name/' + clientNameFake)
         .set(adminHeaders)
         .then(function (res) {
-          console.log(res);
           assert.isTrue(res.body.length === 0);
           assert.strictEqual(res.statusCode, 200);
         });
