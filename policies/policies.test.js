@@ -7,6 +7,8 @@ const {user, admin} = require('../clients/clients.roles');
 
 const clientName = 'Britney';
 const clientNameFake = 'c0ece5db';
+const policyId = '7b624ed3-00d5-4c1b-9ab8-c265067ef58b';
+const policyIdFake = '7z624ed3-00d5-4c1b-9ab8-c265067ef58b';
 const userHeaders = {role: user};
 const adminHeaders = {role: admin};
 
@@ -65,31 +67,21 @@ describe('Policies Unit Test', () => {
         });
     });
   });
-  /*describe('GET /clients/name/:name', () => {
-    it('Should return a client searched by its name', async function () {
+  describe('GET /policies/:id', () => {
+    it('Should return a user linked to a policy number', async function () {
       await chai
         .request(server)
-        .get('/clients/name/' + clientName)
+        .get('/policies/' + policyId)
         .set(adminHeaders)
         .then(function (res) {
-          assert.isTrue(res.body.length === 1);
+          assert.isTrue(res.body[0].name === clientName);
           assert.strictEqual(res.statusCode, 200);
         });
     });
-    it('Should return an empty array of clients because the client name is not found', async function () {
+    it('Should return an empty user because the policyId was not found', async function () {
       await chai
         .request(server)
-        .get('/clients/name/Ivan')
-        .set(adminHeaders)
-        .then(function (res) {
-          assert.isTrue(res.body.length === 0);
-          assert.strictEqual(res.statusCode, 200);
-        });
-    });
-    it('Should return an empty array of clients because the client name is not complete', async function () {
-      await chai
-        .request(server)
-        .get('/clients/name/' + clientName[0])
+        .get('/policies/' + policyIdFake)
         .set(adminHeaders)
         .then(function (res) {
           assert.isTrue(res.body.length === 0);
@@ -99,21 +91,21 @@ describe('Policies Unit Test', () => {
     it('Should return a 403 access denied because there are no role headers', async function () {
       await chai
         .request(server)
-        .get('/clients/name/' + clientName)
+        .get('/policies/' + policyId)
         .then(function (res) {
           assert.strictEqual(res.text, 'Access denied.');
           assert.strictEqual(res.statusCode, 403);
         });
     });
-    it('Should return a 403 access denied because the role is not admin or user', async function () {
+    it('Should return a 403 access denied because the role is not admin', async function () {
       await chai
         .request(server)
-        .get('/clients/name/' + clientName)
-        .set(invalidHeaders)
+        .get('/policies/' + policyIdFake)
+        .set(userHeaders)
         .then(function (res) {
           assert.strictEqual(res.text, 'Access denied.');
           assert.strictEqual(res.statusCode, 403);
         });
     });
-  });*/
+  });
 });
