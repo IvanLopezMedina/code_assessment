@@ -4,7 +4,6 @@ const {isUserOrAdmin} = require('../middlewares/auth');
 
 const clientController = require('./clients');
 
-router.get('/', clientController.getClients);
 router.get('/:id', isUserOrAdmin, clientController.getClientById);
 router.get('/name/:name', isUserOrAdmin, clientController.getClientByName);
 

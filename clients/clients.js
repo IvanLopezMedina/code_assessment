@@ -1,12 +1,6 @@
 const {clients} = require('../provider');
 const {filterNameFromList, filterIdFromList} = require('../helpers');
 
-const getClients = async (req, res) => {
-  let data = await clients;
-
-  return res.json(data);
-};
-
 const getClientById = async (req, res) => {
   let data = await clients;
 
@@ -22,7 +16,6 @@ const getClientByName = async (req, res) => {
 };
 
 module.exports = {
-  getClients,
   getClientById,
   getClientByName,
 };

@@ -3,7 +3,6 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const assert = require('chai').assert;
 const server = require('../index');
-const {clients} = require('../provider');
 const {user, admin} = require('./clients.roles');
 
 const clientId = 'a0ece5db-cd14-4f21-812f-966633e7be86';
@@ -14,24 +13,8 @@ const adminHeaders = {role: admin};
 const invalidHeaders = {role: 'invalid_role'};
 
 chai.use(chaiHttp);
-let clientList;
 
 describe('Clients Unit Test', () => {
-  before(async function () {
-    clientList = await clients;
-  });
-
-  describe('GET /clients', () => {
-    it('Should return an array of clients', async function () {
-      await chai
-        .request(server)
-        .get('/clients')
-        .then(function (res) {
-          assert.isTrue(res.body.length > 0);
-          assert.strictEqual(res.statusCode, 200);
-        });
-    });
-  });
   describe('GET /clients/:id', () => {
     it('Should return a client searched by its id', async function () {
       await chai
