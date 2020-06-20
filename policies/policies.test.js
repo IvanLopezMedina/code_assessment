@@ -15,17 +15,6 @@ const adminHeaders = {role: admin};
 chai.use(chaiHttp);
 
 describe('Policies Unit Test', () => {
-  describe('GET /policies', () => {
-    it('Should return an array of policies', async function () {
-      await chai
-        .request(server)
-        .get('/policies')
-        .then(function (res) {
-          assert.isTrue(res.body.length > 0);
-          assert.strictEqual(res.statusCode, 200);
-        });
-    });
-  });
   describe('GET /policies/name/:clientName', () => {
     it('Should return a list of policies linked to a username', async function () {
       await chai
@@ -100,7 +89,7 @@ describe('Policies Unit Test', () => {
     it('Should return a 403 access denied because the role is not admin', async function () {
       await chai
         .request(server)
-        .get('/policies/' + policyIdFake)
+        .get('/policies/' + policyId)
         .set(userHeaders)
         .then(function (res) {
           assert.strictEqual(res.text, 'Access denied.');

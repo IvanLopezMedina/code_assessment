@@ -1,11 +1,6 @@
 const {clients, policies} = require('../provider');
 const {filterNameFromList, filterIdFromList} = require('../helpers');
 
-const getPolicies = async (req, res) => {
-  let data = await policies;
-  return res.json(data);
-};
-
 const getPoliciesByUsername = async (req, res) => {
   let data = await policies;
   let clientList = await clients;
@@ -32,7 +27,6 @@ const getUserByPolicyNumber = async (req, res) => {
 };
 
 module.exports = {
-  getPolicies,
   getPoliciesByUsername,
   getUserByPolicyNumber,
 };
